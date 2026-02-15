@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>zinko's space</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="home">
+
+  <header class="topbar">
+    <div class="logo">zinko's space</div>
+  </header>
+  <section class="hero">
+    <h1>welcome to zinko's space</h1>
+    <p>here you can play and have fun!</p>
+  </section>
+  <h1 style="text-align:center;">activities</h1>
+  <div id="activitiesList" class="activities-container"></div>
+
+</div>
+
+<div id="activitiesPage" style="display:none; text-align:center;">
+  <h1 id="activityTitle"></h1>
+  <iframe id="activityFrame" style="width:95%; height:85vh; border:none; border-radius:12px;"></iframe>
+  <br><br>
+  <button onclick="goBack()">⬅ Back</button>
+</div>
+
+<script src="g/g.js"></script>
+
+<script>
+  const activitiesList = document.getElementById("activitiesList");
+
+  games.forEach(file => {
+    const title = file.replace(".html", "").replaceAll("_", " ");
+
+    const btn = document.createElement("button");
+    btn.className = "game-btn";
+
+    btn.innerHTML = `
+      <h2>${title}</h2>
+      <p>Click to play</p>
+    `;
+
+    btn.onclick = () => openGame(file);
+
+    activitiesList.appendChild(btn);
+  });
+
+  function openGame(file) {
+    document.getElementById("home").style.display = "none";
+    document.getElementById("activitiesPage").style.display = "block";
+
+    document.getElementById("activityTitle").innerText =
+      file.replace(".html", "").replaceAll("_", " ");
+
+    document.getElementById("activityFrame").src = "g/" + file;
+  }
+
+  function goBack() {
+    document.getElementById("activitiesPage").style.display = "none";
+    document.getElementById("home").style.display = "block";
+    document.getElementById("activityFrame").src = "";
+  }
+</script>
+
+</body>
+</html>
