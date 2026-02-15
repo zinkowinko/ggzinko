@@ -22,7 +22,7 @@ body {
 .logo {
   font-size: 22px;
   font-weight: bold;
-    background: #03002e
+    background: #03002e;
 }
 
 .navlinks a {
@@ -55,7 +55,7 @@ body {
 .hero {
   text-align: center;
   padding: 80px 20px;
-  background: #03002e
+  background: #03002e;
 }
 
 .hero h1 {
@@ -305,6 +305,7 @@ body {
   border: none;
   border-radius: 12px;
 }
+
 
 
 
