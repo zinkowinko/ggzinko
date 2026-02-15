@@ -55,7 +55,7 @@ body {
 .hero {
   text-align: center;
   padding: 80px 20px;
-  background: linear-gradient(to bottom, #151a24, #0d0f14);
+  background: #03002e
 }
 
 .hero h1 {
@@ -305,6 +305,7 @@ body {
   border: none;
   border-radius: 12px;
 }
+
 
 
 
