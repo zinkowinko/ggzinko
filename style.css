@@ -6,7 +6,7 @@
 }
 
 body {
-  background: #0d0f14;
+  background: #010048;
   color: white;
 }
 
@@ -15,7 +15,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
-  background: #11151c;
+  background: #03002e;
   border-bottom: 2px solid #1c2330;
 }
 
@@ -304,4 +304,5 @@ body {
   border: none;
   border-radius: 12px;
 }
+
 
