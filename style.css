@@ -16,7 +16,7 @@ body {
   align-items: center;
   padding: 15px 40px;
   background: #03002e;
-  border-bottom: 2px solid #1c2330;
+  border-bottom: 2px solid #03002e;
 }
 
 .logo {
@@ -305,6 +305,7 @@ body {
   border: none;
   border-radius: 12px;
 }
+
 
 
 
