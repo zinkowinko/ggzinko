@@ -19,6 +19,7 @@ const games = [
   "Granny.html",
   "Geometry Dash Lite.html",
   "Hill Climb Racing Lite.html",
+  "Jelly Drift.html",
   "Melon Playground.html",
   "Minecraft 1.12.2.html",
   "Minecraft 1.21.4.html",
@@ -37,4 +38,5 @@ const games = [
   "Subway Surfers_ St. Petersburg.html",
   "Super Mario 64.html"
 ];
+
 
