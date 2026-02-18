@@ -1,74 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>zinko's space</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div id="home">
-
   <header class="topbar">
     <div class="logo">zinko's space</div>
+    <div class="top-actions">
+      <input id="searchInput" type="text" placeholder="Search games..." />
+    </div>
   </header>
-  <section class="hero">
-    <h1>welcome to zinko's space</h1>
-    <p>discord.gg/zinko</p>
-  </section>
-  <h1 style="text-align:center;">activities</h1>
-  <div id="activitiesList" class="activities-container"></div>
 
+  <div id="home">
+
+    <section class="hero">
+      <h1>zinkos space</h1>
+      <p>discord.gg/zinko</p>
+    </section>
+
+    <section class="games-section">
+      <h2 class="section-title">Games</h2>
+      <div id="activitiesList" class="games-grid"></div>
+    </section>
+
+  </div>
+
+  <div id="loadingScreen" class="loading-screen" style="display:none;">
+    <div class="loader-box">
+      <div class="spinner"></div>
+      <h2 id="loadingText">loading...</h2>
+    </div>
+  </div>
+
+  <div id="activitiesPage" class="game-page" style="display:none;">
+<div class="game-topbar">
+  <button class="back-btn" onclick="goBack()">⬅ Back</button>
+
+  <div id="activityTitle" class="game-title"></div>
+
+  <button class="fullscreen-btn" onclick="goFullscreen()">⛶ Fullscreen</button>
 </div>
 
-<div id="activitiesPage" style="display:none; text-align:center;">
-  <h1 id="activityTitle"></h1>
-  <iframe id="activityFrame" style="width:95%; height:85vh; border:none; border-radius:12px;"></iframe>
-  <br><br>
-  <button onclick="goBack()">⬅ Back</button>
-</div>
 
-<script src="g/g.js"></script>
+    <iframe id="activityFrame" class="game-frame"></iframe>
+  </div>
 
-<script>
-  const activitiesList = document.getElementById("activitiesList");
+  <script src="g/g.js"></script>
 
-  games.forEach(file => {
-    const title = file.replace(".html", "").replaceAll("_", " ");
+  <script>
+    const activitiesList = document.getElementById("activitiesList");
+    const searchInput = document.getElementById("searchInput");
 
-    const btn = document.createElement("button");
-    btn.className = "game-btn";
+    function displayGames(filter = "") {
+      activitiesList.innerHTML = "";
 
-    btn.innerHTML = `
-      <h2>${title}</h2>
-      <p>Click to play</p>
-    `;
+      games
+        .filter(file => file.toLowerCase().includes(filter.toLowerCase()))
+        .forEach(file => {
+          const title = file.replace(".html", "").replaceAll("_", " ");
 
-    btn.onclick = () => openGame(file);
+          const card = document.createElement("div");
+          card.className = "game-card";
 
-    activitiesList.appendChild(btn);
-  });
+          card.innerHTML = `
+            <div class="game-info">
+              <h3>${title}</h3>
+              <p>click to launch</p>
+            </div>
+          `;
 
-  function openGame(file) {
-    document.getElementById("home").style.display = "none";
-    document.getElementById("activitiesPage").style.display = "block";
+          card.onclick = () => openGame(file);
 
-    document.getElementById("activityTitle").innerText =
-      file.replace(".html", "").replaceAll("_", " ");
+          activitiesList.appendChild(card);
+        });
+    }
 
-    document.getElementById("activityFrame").src = "g/" + file;
+    displayGames();
+
+    searchInput.addEventListener("input", () => {
+      displayGames(searchInput.value);
+    });
+
+    function openGame(file) {
+      document.getElementById("home").style.display = "none";
+      document.getElementById("loadingScreen").style.display = "flex";
+
+      const title = file.replace(".html", "").replaceAll("_", " ");
+      document.getElementById("loadingText").innerText = "Loading " + title + "...";
+
+      setTimeout(() => {
+        document.getElementById("loadingScreen").style.display = "none";
+        document.getElementById("activitiesPage").style.display = "block";
+
+        document.getElementById("activityTitle").innerText = title;
+        document.getElementById("activityFrame").src = "g/" + file;
+      }, 1200);
+    }
+
+    function goBack() {
+      document.getElementById("activitiesPage").style.display = "none";
+      document.getElementById("home").style.display = "block";
+      document.getElementById("activityFrame").src = "";
+    }
+
+    function goFullscreen() {
+  const iframe = document.getElementById("activityFrame");
+
+  if (iframe.requestFullscreen) {
+    iframe.requestFullscreen();
+  } else if (iframe.webkitRequestFullscreen) {
+    iframe.webkitRequestFullscreen();
+  } else if (iframe.msRequestFullscreen) {
+    iframe.msRequestFullscreen();
   }
+}
 
-  function goBack() {
-    document.getElementById("activitiesPage").style.display = "none";
-    document.getElementById("home").style.display = "block";
-    document.getElementById("activityFrame").src = "";
-  }
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1418689492275331"
-     crossorigin="anonymous"></script>
+  </script>
+
 </body>
 </html>
-
-
