@@ -2,6 +2,7 @@ const games = [
   "1v1.LoL.html",
   "Amaze.html",
   "Angry Birds.html",
+  "A Difficult Game About Climbing.html",
   "baldi.html",
   "bitlife.html",
   "Blade Ball.html",
@@ -15,10 +16,12 @@ const games = [
   "Five Nights at Epstein's.html",
   "Flappy Bird.html",
   "Going Balls.html",
+  "Getting Over It with Bennett Foddy.html",
   "Gorilla Tag.html",
   "Granny.html",
   "Geometry Dash Lite.html",
   "Hill Climb Racing Lite.html",
+  "Half Life.html",
   "Jelly Drift.html",
   "Melon Playground.html",
   "Minecraft 1.12.2.html",
@@ -31,12 +34,15 @@ const games = [
   "run1.html",
   "run2.html",
   "run3.html",
+  "RE_RUN.html",
   "R.E.P.O.html",
   "Slope.html",
   "Stacky Dash.html",
   "Steal A Brainrot.html",
   "Subway Surfers_ St. Petersburg.html",
-  "Super Mario 64.html"
+  "Super Mario 64.html",
+  "Schoolboy Runaway.html"
 ];
+
 
 
