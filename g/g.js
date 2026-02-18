@@ -12,10 +12,12 @@ const games = [
   "Five Nights at Freddy's 4.html",
   "Five Nights at Freddy's_ Ultimate Custom Night.html",
   "Five Nights at Freddy's.html",
+  "Five Nights at Epstein's.html",
   "Flappy Bird.html",
   "Going Balls.html",
   "Gorilla Tag.html",
   "Granny.html",
+  "Geometry Dash Lite.html",
   "Hill Climb Racing Lite.html",
   "Melon Playground.html",
   "Minecraft 1.12.2.html",
@@ -28,9 +30,11 @@ const games = [
   "run1.html",
   "run2.html",
   "run3.html",
+  "R.E.P.O.html",
   "Slope.html",
   "Stacky Dash.html",
   "Steal A Brainrot.html",
   "Subway Surfers_ St. Petersburg.html",
   "Super Mario 64.html"
 ];
+
