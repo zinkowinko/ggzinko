@@ -3,19 +3,28 @@ name: Deploy to VPS
 on:
   push:
     branches:
-      - main  # deploy only on main branch
+      - main  # only run on pushes to main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Run deploy script on VPS
-        uses: appleboy/ssh-action@v0.1.7
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.8.1
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_KEY }}
-          script: "/var/www/ggzinko/deploy.sh"
+          ssh-private-key: ${{ secrets.VPS_KEY }}
+
+      - name: Update site on VPS
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} 'bash -s' << 'EOF'
+            cd /var/www/ggzinko
+            git fetch origin
+            git reset --hard origin/main
+            git clean -fd
+            sudo chown -R caddy:caddy .
+            sudo chmod -R 755 .
+          EOF
