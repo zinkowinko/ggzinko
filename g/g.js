@@ -1,5 +1,6 @@
 const games = [
   "1v1.LoL.html",
+  "8 Ball Pool.html",
   "Amaze.html",
   "Angry Birds.html",
   "A Difficult Game About Climbing.html",
@@ -43,6 +44,7 @@ const games = [
   "Super Mario 64.html",
   "Schoolboy Runaway.html"
 ];
+
 
 
 
