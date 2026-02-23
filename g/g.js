@@ -9,7 +9,7 @@ const games = [
   "Blade Ball.html",
   "Cluster Rush.html",
   "Color Match.html",
-  "Count Masters_ Stickman Games.html",
+  "Count Masters_ Stickman.html",
   "crossy road.html",
   "Five Nights at Freddy's 4.html",
   "Five Nights at Freddy's_ Ultimate Custom Night.html",
@@ -44,6 +44,7 @@ const games = [
   "Super Mario 64.html",
   "Schoolboy Runaway.html"
 ];
+
 
 
 
