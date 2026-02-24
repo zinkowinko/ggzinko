@@ -60,8 +60,11 @@ const games = [
   "Slope.html",
   "Stacky Dash.html",
   "Steal A Brainrot.html",
+  "Solar Smash.html",
   "Subway Surfers_ St. Petersburg.html",
   "Super Mario 64.html",
   "Tattletail.html",
+  "Temple Run 2.html",
   "Yandere Simulator.html"
 ];
+
