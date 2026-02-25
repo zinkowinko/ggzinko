@@ -65,6 +65,8 @@ const games = [
   "Super Mario 64.html",
   "Tattletail.html",
   "Temple Run 2.html",
+  "ULTRAKILL.html",
   "Yandere Simulator.html"
 ];
+
 
