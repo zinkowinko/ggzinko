@@ -24,8 +24,13 @@
       <button class="fullscreen-btn" onclick="window.location.href='/link.txt'">see all links</button>
     </section>
 
+<a class="discord-float" href="https://discord.gg/zinko" target="_blank" rel="noopener">
+  <img src="discord-icon.png" alt="discord">
+  <span>discord</span>
+</a>
+
     <section class="games-section">
-      <h2 class="section-title">games</h2>
+      <h2 class="section-title">activities</h2>
       <div id="activitiesList" class="games-grid"></div>
     </section>
 
@@ -34,7 +39,7 @@
   <div id="loadingScreen" class="loading-screen" style="display:none;">
     <div class="loader-box">
       <div class="spinner"></div>
-      <h2 id="loadingText">loading...</h2>
+      <h2 id="loadingText">loading</h2>
     </div>
   </div>
 
@@ -57,51 +62,64 @@
     const activitiesList = document.getElementById("activitiesList");
     const searchInput = document.getElementById("searchInput");
 
-    function displayGames(filter = "") {
-      activitiesList.innerHTML = "";
+function displayGames(filter = "") {
+  activitiesList.innerHTML = "";
 
-      games
-        .filter(file => file.toLowerCase().includes(filter.toLowerCase()))
-        .forEach(file => {
-          const title = file.replace(".html", "").replaceAll("_", " ");
+  const items = (window.gameItems || []).filter(item =>
+    (item.name || "").toLowerCase().includes(filter.toLowerCase())
+  );
 
-          const card = document.createElement("div");
-          card.className = "game-card";
+  items.forEach(item => {
+    const title = item.name || "Untitled";
 
-          card.innerHTML = `
-            <div class="game-info">
-              <h3>${title}</h3>
-              <p>click to launch</p>
-            </div>
-          `;
+    const card = document.createElement("div");
+    card.className = "game-card";
 
-          card.onclick = () => openGame(file);
+    const cover = item.cover ? `<img class="game-cover" src="${item.cover}" alt="${title}">` : "";
 
-          activitiesList.appendChild(card);
-        });
-    }
+    card.innerHTML = `
+      ${cover}
+      <div class="game-info">
+        <h3>${title}</h3>
+        <p>click to launch</p>
+      </div>
+    `;
 
-    displayGames();
+    card.onclick = () => openGame(item);
+    activitiesList.appendChild(card);
+  });
+}
+window.addEventListener("games:ready", () => displayGames());
+window.addEventListener("games:error", () => {
+  activitiesList.innerHTML = "failed to load games.json";
+});
+
+window.addEventListener("games:ready", () => displayGames());
+window.addEventListener("games:error", () => {
+  activitiesList.innerHTML = "failed to load games (g.json)";
+});
 
     searchInput.addEventListener("input", () => {
       displayGames(searchInput.value);
     });
 
-    function openGame(file) {
-      document.getElementById("home").style.display = "none";
-      document.getElementById("loadingScreen").style.display = "flex";
+function openGame(item) {
+  document.getElementById("home").style.display = "none";
+  document.getElementById("loadingScreen").style.display = "flex";
 
-      const title = file.replace(".html", "").replaceAll("_", " ");
-      document.getElementById("loadingText").innerText = "Loading " + title + "...";
+  const title = item.name || "Game";
+  document.getElementById("loadingText").innerText = "Loading " + title + "...";
 
-      setTimeout(() => {
-        document.getElementById("loadingScreen").style.display = "none";
-        document.getElementById("activitiesPage").style.display = "block";
+  setTimeout(() => {
+    document.getElementById("loadingScreen").style.display = "none";
+    document.getElementById("activitiesPage").style.display = "block";
 
-        document.getElementById("activityTitle").innerText = title;
-        document.getElementById("activityFrame").src = "g/" + file;
-      }, 1200);
-    }
+    document.getElementById("activityTitle").innerText = title;
+
+    document.getElementById("activityFrame").src = item.url;
+  }, 1200);
+}
+    
 
     function goBack() {
       document.getElementById("activitiesPage").style.display = "none";
@@ -123,8 +141,8 @@
 
   </script>
 
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1418689492275331"
+     crossorigin="anonymous"></script>
+
 </body>
 </html>
-
-
-
